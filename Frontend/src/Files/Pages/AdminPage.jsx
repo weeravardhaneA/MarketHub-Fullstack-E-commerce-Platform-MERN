@@ -3,22 +3,23 @@ import {Navigate} from "react-router-dom";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import { useAuth } from "../AuthProvider/AuthProvider";
+import Form from "../Components/Form/Form";
 
 const AdminPage = () => {
 
   // Variables ===================================================================
 
   const {RoleCheck} = useAuth();
-
   const [Role, setRole] = useState("");
-  
-  const [FormDataObj, setFormDataObj] = useState({HeaderText: "Company Details", ButtonText: "Save Changes"});
 
-  const [DataArray, setDataArray] = useState([
-
-    { name: "Company Name", value: "Hello" },
-    
-  ]);
+  const [FormName, setFormName] = useState("Admin Page")
+  const [ButtonText, setButtonText] = useState("Save")
+  const [FormDataArray, setFormDataArray] = useState(
+    [
+      {Id: 1, Text: "Company Name", Value: "Company", Type: "text"},
+      {Id: 2, Text: "Company Email", Value: "hello@gmail.com", Type: "email"}
+    ]
+  )
 
   useEffect(() => {
 
@@ -37,26 +38,21 @@ const AdminPage = () => {
 
   // onChange ==========================================================
 
-  const onChange = (name, value) => {
+  const onFormInputFieldChange = (Id, Value) => {
 
-    try
-    {
-      const newArray = [...DataArray];
+    const newArray = FormDataArray.map((item) => {
 
-      const obj = newArray.find((item) => item.name == name)
-      obj.value = value;
-      setDataArray(newArray);
+      if(item.Id === Id)
+      {
+        return {...item, Value}
+      }
+      else
+      {
+        return item
+      }
+    })
 
-      console.log(DataArray);
-
-    }
-    catch(err)
-    {
-      console.log("myErr onChange :=== " + err);
-    }
-    finally
-    {
-    }
+    setFormDataArray(newArray)
   }
 
   // ==========================================================
@@ -80,12 +76,9 @@ const AdminPage = () => {
         <Header />
 
         <div className="w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-[var(--c1)] via-[var(--c5)]/60 to-[var(--c1)]">
-          <div className="w-8/10 md:w-7/10 lg:w-1/2 flex items-center justify-center">
-
-          {/* <Form FormDataObj={FormDataObj} DataArray={DataArray} onChange={onChange}/> */}
+          
+          <Form FormName={"AdminPage"} FormDataArray={FormDataArray} ButtonText={"Save"} onChange={onFormInputFieldChange}/>
             
-          </div>
-
         </div>
 
         <Footer/>
