@@ -17,7 +17,7 @@ router.post("/", VerifyToken, async (req, res) => {
     const refreshToken = req.cookies.refreshToken;
     const {StoreName, StoreDescription, StoreImageUrl} = req.body;
 
-    console.log("Data ==================================================", StoreName, StoreDescription, StoreImageUrl);
+    console.log("Data ", StoreName, StoreDescription, StoreImageUrl);
 
     const filter = {refreshToken}
     const data = {$push: {stores: {name: StoreName, description: StoreDescription, imageUrl: StoreImageUrl}}}
