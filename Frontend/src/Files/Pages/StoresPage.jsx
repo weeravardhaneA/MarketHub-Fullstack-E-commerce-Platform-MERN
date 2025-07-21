@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
-import { useAuth } from "../Tags/AuthProvider"; // Adjust the path if needed
+import { useAuth } from "../AuthProvider/AuthProvider";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ErrorToast from "../Components/Toasts/ErrorToast";

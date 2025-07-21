@@ -5,7 +5,7 @@ import { Toaster } from 'sonner'
 
 import "./index.css"
 
-import { AuthProvider, useAuth } from './Files/Tags/AuthProvider'
+import { AuthProvider, useAuth } from './Files/AuthProvider/AuthProvider'
 
 import App from "./App"
 

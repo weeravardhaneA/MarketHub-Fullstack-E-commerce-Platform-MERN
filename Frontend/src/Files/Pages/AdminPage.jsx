@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {Navigate} from "react-router-dom";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
-import { useAuth } from "../Tags/AuthProvider";
+import { useAuth } from "../AuthProvider/AuthProvider";
 
 const AdminPage = () => {
 
@@ -22,7 +22,6 @@ const AdminPage = () => {
 
   useEffect(() => {
 
-    // pahala widihata thamai useEffect ekak athule async function ekak use karanne.
     (async() => {
 
       const result = await RoleCheck();

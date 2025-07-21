@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {useAuth} from "../../Tags/AuthProvider"
+import {useAuth} from "../../AuthProvider/AuthProvider"
 
 const LoginIcon = () => {
 

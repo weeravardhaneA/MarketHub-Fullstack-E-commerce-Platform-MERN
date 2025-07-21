@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../Tags/AuthProvider";
+import { useAuth } from "../AuthProvider/AuthProvider";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import ErrorToast from "../Components/Toasts/ErrorToast";
