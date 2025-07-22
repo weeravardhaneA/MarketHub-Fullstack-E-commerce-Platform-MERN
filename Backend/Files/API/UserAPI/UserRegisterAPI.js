@@ -1,11 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-// databases
 const Users = require("../../Collections/UsersCollection");
 const TempUsers = require("../../Collections/TempUsersCollection");
 
-// functions
 const NodeMailer = require("../../Middlewares/Nodemailer");
 const InsertOne = require("../../Functions/InsertOne");
 const FindOne = require("../../Functions/FindOne");

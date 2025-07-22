@@ -16,7 +16,6 @@ router.get("/", VerifyToken, async (req, res) => {
     console.log("This is sellerArray::: ", sellerArray);
 
     const storesArray = sellerArray.map(item => item.stores).flat();
-    // map eke agata flat() dana ekama thamai kelinma flaatMap function eken karanne.
     console.log("this is the storesArray::: ", storesArray);
 
     return res.json({code: 3, storesArray, message: "all stores data gatherd and sent to the frontend"})

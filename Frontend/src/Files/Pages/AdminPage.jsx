@@ -4,6 +4,8 @@ import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import { useAuth } from "../AuthProvider/AuthProvider";
 import Form from "../Components/Form/Form";
+import axios from "axios";
+const api_url = import.meta.env.VITE_API_URL;
 
 const AdminPage = () => {
 
@@ -12,12 +14,10 @@ const AdminPage = () => {
   const {RoleCheck} = useAuth();
   const [Role, setRole] = useState("");
 
-  const [FormName, setFormName] = useState("Admin Page")
-  const [ButtonText, setButtonText] = useState("Save")
   const [FormDataArray, setFormDataArray] = useState(
     [
-      {Id: 1, Text: "Company Name", Value: "Company", Type: "text"},
-      {Id: 2, Text: "Company Email", Value: "hello@gmail.com", Type: "email"}
+      {_id: 1, name: "Company Name", value: "Company", type: "text"},
+      {_id: 2, name: "Company Email", value: "hello@gmail.com", type: "email"}
     ]
   )
 
@@ -36,15 +36,74 @@ const AdminPage = () => {
   // ===================================================================
   // ===================================================================
 
+
+  // APIs ===================================================================
+
+  const GetDataAPI = async () => {
+
+    const response = await axios.get(api_url + "/admin/get-details", {
+
+      headers: {"Content-Type": "application/json"},
+      withCredentials: true
+
+    })
+
+    const result = response.data;
+
+    console.log(result);
+
+    setFormDataArray(result.data)
+
+  }
+
+  const SendDataAPI = async () => {
+
+    const response = await axios.post(api_url + "/admin/update-details", {
+      
+      FormDataArray
+    
+    }, {
+
+      headers: {"Content-Type": "application/json"},
+      withCredentials: true
+    })
+
+    const result = response.data;
+
+    console.log(result);
+  }
+
+  // ===================================================================
+  // ===================================================================
+  // ===================================================================
+
+
+  // useEffect ===================================================================
+
+  useEffect(() => {
+
+    (async () => {
+
+      await GetDataAPI();
+
+    })()
+
+  }, [])
+
+  // ===================================================================
+  // ===================================================================
+  // ===================================================================
+
+
   // onChange ==========================================================
 
-  const onFormInputFieldChange = (Id, Value) => {
+  const onFormInputFieldChange = (_id, value) => {
 
     const newArray = FormDataArray.map((item) => {
 
-      if(item.Id === Id)
+      if(item._id === _id)
       {
-        return {...item, Value}
+        return {...item, value}
       }
       else
       {
@@ -53,6 +112,20 @@ const AdminPage = () => {
     })
 
     setFormDataArray(newArray)
+  }
+
+  // ==========================================================
+  // ==========================================================
+  // ==========================================================
+
+
+  // onSubmit ==========================================================
+
+  const onFormSubmit = async (e) => {
+
+    e.preventDefault();
+    await SendDataAPI();
+
   }
 
   // ==========================================================
@@ -77,7 +150,13 @@ const AdminPage = () => {
 
         <div className="w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-[var(--c1)] via-[var(--c5)]/60 to-[var(--c1)]">
           
-          <Form FormName={"AdminPage"} FormDataArray={FormDataArray} ButtonText={"Save"} onChange={onFormInputFieldChange}/>
+          <Form
+            FormName={"AdminPage"}
+            FormDataArray={FormDataArray}
+            ButtonText={"Save"}
+            onChange={onFormInputFieldChange}
+            onSubmit={onFormSubmit}
+          />
             
         </div>
 
