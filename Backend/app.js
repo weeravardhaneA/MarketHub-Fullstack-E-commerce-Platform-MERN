@@ -5,13 +5,13 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
-const UserRegisterAPI = require("./Files/API/UserAPI/UserRegisterAPI")
-const UserLoginAPI = require("./Files/API/UserAPI/UserLoginAPI")
-const AuthProviderAPI = require("./Files/API/UserAPI/AuthProviderAPI")
-const StoreCreateAPI = require("./Files/API/SellerAPI/StoreCreateAPI")
-const GetStoresDataAPI = require("./Files/API/UserAPI/GetStoresDataAPI")
-const UpdateDetails = require("./Files/API/AdminAPI/UpdateDetails")
-const GetDetails = require("./Files/API/AdminAPI/GetDetails")
+const UserRegisterAPI = require("./src/APIs/UserAPI/UserRegisterAPI")
+const UserLoginAPI = require("./src/APIs/UserAPI/UserLoginAPI")
+const AuthProviderAPI = require("./src/APIs/UserAPI/AuthProviderAPI")
+const StoreCreateAPI = require("./src/APIs/SellerAPI/StoreCreateAPI")
+const GetStoresDataAPI = require("./src/APIs/UserAPI/GetStoresDataAPI")
+const UpdateDetails = require("./src/APIs/AdminAPI/UpdateDetails")
+const GetDetails = require("./src/APIs/AdminAPI/GetDetails")
 
 const connect = async () => {
 
