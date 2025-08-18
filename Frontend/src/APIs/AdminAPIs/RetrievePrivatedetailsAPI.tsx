@@ -1,6 +1,6 @@
 import axios from "axios";
 const api_url = import.meta.env.VITE_API_URL;
-import log from "../Utils/log";
+import log from "../../Utils/log";
 
 const RetrievePrivatedetailsAPI = async () => {
 

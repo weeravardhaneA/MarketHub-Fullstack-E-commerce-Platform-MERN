@@ -6,7 +6,8 @@ import { useAppContext } from "../Hooks/useAppContext";
 import Form from "../Components/Form/Form";
 import axios from "axios";
 const api_url = import.meta.env.VITE_API_URL;
-import RetrievePrivatedetailsAPI from "../APIs/RetrievePrivatedetailsAPI";
+import RetrievePrivatedetailsAPI from "../APIs/AdminAPIs/RetrievePrivatedetailsAPI";
+import UpdatePrivatedetailsAPI from "../APIs/AdminAPIs/UpdatePrivatedetails";
 
 const AdminPage = () => {
 
@@ -17,8 +18,8 @@ const AdminPage = () => {
 
   const [FormDataArray, setFormDataArray] = useState(
     [
-      {_id: 1, name: "Company Name", value: "Company", type: "text"},
-      {_id: 2, name: "Company Email", value: "hello@gmail.com", type: "email"}
+      {_id: "1", name: "Company Name", value: "Company", type: "text"},
+      {_id: "2", name: "Company Email", value: "hello@gmail.com", type: "email"}
     ]
   )
 
@@ -36,33 +37,6 @@ const AdminPage = () => {
   // ===================================================================
   // ===================================================================
   // ===================================================================
-
-
-  // APIs ===================================================================
-
-
-  
-  const SendDataAPI = async () => {
-    
-    const response = await axios.post(api_url + "/admin/update-details", {
-      
-      FormDataArray
-      
-    }, {
-      
-      headers: {"Content-Type": "application/json"},
-      withCredentials: true
-    })
-    
-    const result = response.data;
-    
-    console.log(result);
-  }
-  
-  // ===================================================================
-  // ===================================================================
-  // ===================================================================
-  
   
   // useEffect ===================================================================
   
@@ -70,7 +44,7 @@ const AdminPage = () => {
     
     (async () => {
       
-      const privateData = RetrievePrivatedetailsAPI();
+      const privateData = await RetrievePrivatedetailsAPI();
       setFormDataArray(privateData);
       
     })()
@@ -111,7 +85,7 @@ const AdminPage = () => {
   const onFormSubmit = async (e) => {
 
     e.preventDefault();
-    await SendDataAPI();
+    await UpdatePrivatedetailsAPI(FormDataArray);
 
   }
 

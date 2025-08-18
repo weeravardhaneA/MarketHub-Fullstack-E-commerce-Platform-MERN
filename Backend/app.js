@@ -10,7 +10,7 @@ const UserLoginAPI = require("./src/APIs/UserAPI/UserLoginAPI")
 const AuthProviderAPI = require("./src/APIs/UserAPI/AuthProviderAPI")
 const StoreCreateAPI = require("./src/APIs/SellerAPI/StoreCreateAPI")
 const GetStoresDataAPI = require("./src/APIs/UserAPI/GetStoresDataAPI")
-const UpdateDetails = require("./src/APIs/AdminAPI/UpdateDetails")
+const UpdatePrivatedetails = require("./src/APIs/AdminAPI/UpdatePrivatedetails")
 const RetrievePrivatedetailsAPI = require("./src/APIs/AdminAPI/RetrievePrivatedetailsAPI")
 
 const connect = async () => {
@@ -34,7 +34,7 @@ const connect = async () => {
     app.use("/api/seller/store-create", StoreCreateAPI);
 
     app.use("/api/admin/retrieve/privatedetails", RetrievePrivatedetailsAPI);
-    app.use("/api/admin/update-details", UpdateDetails);
+    app.use("/api/admin/update/privatedetails", UpdatePrivatedetails);
     
     app.listen(process.env.PORT || 5000);
     console.log("Connected");
