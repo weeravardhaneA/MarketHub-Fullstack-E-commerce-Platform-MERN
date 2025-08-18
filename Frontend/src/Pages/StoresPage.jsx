@@ -4,7 +4,7 @@ import Footer from "../Components/Footer/Footer";
 import { useAppContext } from "../Hooks/useAppContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ErrorToast from "../Components/Toasts/ErrorToast";
+import ErrorToast from "../Utils/ErrorToast";
 
 const Stores = () => {
 

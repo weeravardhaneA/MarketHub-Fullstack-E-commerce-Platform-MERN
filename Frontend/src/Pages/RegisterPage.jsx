@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
-import ErrorToast from "../Components/Toasts/ErrorToast";
+import ErrorToast from "../Utils/ErrorToast";
 
 const RegisterPage = () => {
 

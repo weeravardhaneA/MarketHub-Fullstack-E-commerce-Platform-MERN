@@ -4,7 +4,7 @@ import { useAppContext } from "../Hooks/useAppContext";
 import { useNavigate, Navigate } from "react-router-dom";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
-import ErrorToast from "../Components/Toasts/ErrorToast";
+import ErrorToast from "../Utils/ErrorToast";
 
 const OTPconfirmPage = ({ email }) => {
   
