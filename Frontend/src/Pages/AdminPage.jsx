@@ -6,6 +6,7 @@ import { useAppContext } from "../Hooks/useAppContext";
 import Form from "../Components/Form/Form";
 import axios from "axios";
 const api_url = import.meta.env.VITE_API_URL;
+import RetrievePrivatedetailsAPI from "../APIs/RetrievePrivatedetailsAPI";
 
 const AdminPage = () => {
 
@@ -39,53 +40,39 @@ const AdminPage = () => {
 
   // APIs ===================================================================
 
-  const GetDataAPI = async () => {
 
-    const response = await axios.get(api_url + "/admin/get-details", {
-
-      headers: {"Content-Type": "application/json"},
-      withCredentials: true
-
-    })
-
-    const result = response.data;
-
-    console.log(result);
-
-    setFormDataArray(result.data)
-
-  }
-
+  
   const SendDataAPI = async () => {
-
+    
     const response = await axios.post(api_url + "/admin/update-details", {
       
       FormDataArray
-    
+      
     }, {
-
+      
       headers: {"Content-Type": "application/json"},
       withCredentials: true
     })
-
+    
     const result = response.data;
-
+    
     console.log(result);
   }
-
+  
   // ===================================================================
   // ===================================================================
   // ===================================================================
-
-
+  
+  
   // useEffect ===================================================================
-
+  
   useEffect(() => {
-
+    
     (async () => {
-
-      await GetDataAPI();
-
+      
+      const privateData = RetrievePrivatedetailsAPI();
+      setFormDataArray(privateData);
+      
     })()
 
   }, [])
