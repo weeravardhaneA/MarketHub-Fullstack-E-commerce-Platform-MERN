@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const VerifyToken = require("../../Middlewares/VerifyToken");
-const FindMany = require("../../Utils/FindMany");
+const FindAll = require("../../Utils/FindAll");
 const UsersModel = require("../../Models/UsersModel");
 
 router.get("/", VerifyToken, async (req, res) => {
@@ -12,7 +12,7 @@ router.get("/", VerifyToken, async (req, res) => {
   try
   {
     const filter = {role: "seller"}
-    const sellerArray = await FindMany(UsersModel, filter)
+    const sellerArray = await FindAll(UsersModel, filter)
     console.log("This is sellerArray::: ", sellerArray);
 
     const storesArray = sellerArray.map(item => item.stores).flat();
