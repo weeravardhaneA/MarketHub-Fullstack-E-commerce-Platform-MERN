@@ -5,23 +5,23 @@ import { Toaster } from 'sonner'
 
 import "./index.css"
 
-import { AuthProvider, useAuth } from './Files/AuthProvider/AuthProvider'
+import { AppContextProvider, useAppContext } from './Hooks/useAppContext'
 
 import App from "./App"
 
-import HomePage from './Files/Pages/HomePage'
-import AdminPage from './Files/Pages/AdminPage'
-import LoginPage from './Files/Pages/LoginPage'
-import RegisterPage from './Files/Pages/RegisterPage'
-import OTPconfirmPage from './Files/Pages/OTPconfirmPage'
-import StoresPage from "./Files/Pages/StoresPage"
-import CreateStorePage from './Files/Pages/CreateStorePage'
-import StorePage from './Files/Pages/StorePage'
+import HomePage from './Pages/HomePage'
+import AdminPage from './Pages/AdminPage'
+import LoginPage from './Pages/LoginPage'
+import RegisterPage from './Pages/RegisterPage'
+import OTPconfirmPage from './Pages/OTPconfirmPage'
+import StoresPage from "./Pages/StoresPage"
+import CreateStorePage from './Pages/CreateStorePage'
+import StorePage from './Pages/StorePage'
 
 
 const RouteWrapper = () => {
 
-  const {Logged} = useAuth()
+  const {Logged} = useAppContext()
 
   return(
 
@@ -54,11 +54,11 @@ createRoot(document.getElementById('root')).render(
   
   <BrowserRouter>
 
-    <AuthProvider>
+    <AppContextProvider>
       
       <RouteWrapper/>
 
-    </AuthProvider>
+    </AppContextProvider>
 
   </BrowserRouter>
 )

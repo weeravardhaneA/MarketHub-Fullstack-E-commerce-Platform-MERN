@@ -5,11 +5,13 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
-const UserRegisterAPI = require("./Files/API/UserAPI/UserRegisterAPI")
-const UserLoginAPI = require("./Files/API/UserAPI/UserLoginAPI")
-const AuthProviderAPI = require("./Files/API/UserAPI/AuthProviderAPI")
-const StoreCreateAPI = require("./Files/API/SellerAPI/StoreCreateAPI")
-const GetStoresDataAPI = require("./Files/API/UserAPI/GetStoresDataAPI")
+const UserRegisterAPI = require("./src/APIs/UserAPI/UserRegisterAPI")
+const UserLoginAPI = require("./src/APIs/UserAPI/UserLoginAPI")
+const AuthProviderAPI = require("./src/APIs/UserAPI/AuthProviderAPI")
+const StoreCreateAPI = require("./src/APIs/SellerAPI/StoreCreateAPI")
+const GetStoresDataAPI = require("./src/APIs/UserAPI/GetStoresDataAPI")
+const UpdateDetails = require("./src/APIs/AdminAPI/UpdateDetails")
+const GetDetails = require("./src/APIs/AdminAPI/GetDetails")
 
 const connect = async () => {
 
@@ -18,7 +20,7 @@ const connect = async () => {
     await mongoose.connect(process.env.MONGODB_URI)
     
     app.use(cors({
-      origin: "http://localhost:5173",
+      origin: process.env.FRONTEND_ORIGIN,
       credentials: true
     }));
     app.use(express.json());
@@ -30,6 +32,9 @@ const connect = async () => {
     app.use("/api/user/get-stores-data", GetStoresDataAPI);
 
     app.use("/api/seller/store-create", StoreCreateAPI);
+
+    app.use("/api/admin/get-details", GetDetails);
+    app.use("/api/admin/update-details", UpdateDetails);
     
     app.listen(process.env.PORT || 5000);
     console.log("Connected");
